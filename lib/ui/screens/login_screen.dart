@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_task_manager/ui/screens/bottom_nav_base_screen.dart';
 import 'package:flutter_task_manager/ui/screens/email_verifiaction_screen.dart';
 import 'package:flutter_task_manager/ui/screens/widgets/screen_background.dart';
 
@@ -47,7 +48,12 @@ class _LoginScreenState extends State<LoginScreen> {
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const BottomNavBaseScreen()));
+                    },
                     child: const Icon(Icons.arrow_forward_ios,
                         color: Colors.white),
                   ),
