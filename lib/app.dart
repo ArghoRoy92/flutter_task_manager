@@ -30,7 +30,7 @@ class TaskManagerApp extends StatelessWidget {
               elevation: 2,
             ),
           ),
-          textTheme: TextTheme(
+          textTheme: const TextTheme(
             titleLarge: TextStyle(
                 fontSize: 32, color: Colors.black, fontWeight: FontWeight.w500),
           )),

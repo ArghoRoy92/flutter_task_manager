@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_task_manager/ui/screens/email_verifiaction_screen.dart';
 import 'package:flutter_task_manager/ui/screens/widgets/screen_background.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -57,9 +58,15 @@ class _LoginScreenState extends State<LoginScreen> {
                 SizedBox(
                     child: Center(
                   child: TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  const EmailVerificationScreen()));
+                    },
                     child: const Text(
-                      'Forgot Password ?',
+                      'Forgot Password?',
                       style: TextStyle(color: Colors.black),
                     ),
                   ),
