@@ -34,6 +34,7 @@ class AddNewTask extends StatelessWidget {
                       height: 15,
                     ),
                     const TextField(
+                      maxLines: 6,
                       decoration: InputDecoration(
                           hintText: 'Description',
                           contentPadding: EdgeInsets.all(10)),
