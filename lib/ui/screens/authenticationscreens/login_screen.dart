@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_task_manager/ui/screens/authenticationscreens/signup_screen.dart';
 import 'package:flutter_task_manager/ui/screens/bottomnavsacreen/bottom_nav_base_screen.dart';
 import 'package:flutter_task_manager/ui/screens/authenticationscreens/email_verifiaction_screen.dart';
 import 'package:flutter_task_manager/ui/widgets/screen_background.dart';
@@ -23,7 +24,7 @@ class _LoginScreenState extends State<LoginScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Get Started Width',
+                  'Get Started With',
                   style: Theme.of(context).textTheme.titleLarge,
                 ),
                 const SizedBox(
@@ -83,7 +84,12 @@ class _LoginScreenState extends State<LoginScreen> {
                   children: [
                     const Text("Don't Have An Account"),
                     TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const JoinWithUs()));
+                      },
                       child: const Text('Sign Up',
                           style: TextStyle(color: Colors.green)),
                     ),

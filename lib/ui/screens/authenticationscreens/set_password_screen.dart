@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_task_manager/ui/screens/authenticationscreens/join_with_us.dart';
+import 'package:flutter_task_manager/ui/screens/authenticationscreens/signup_screen.dart';
 import 'package:flutter_task_manager/ui/widgets/screen_background.dart';
 
 class SetPassword extends StatelessWidget {
