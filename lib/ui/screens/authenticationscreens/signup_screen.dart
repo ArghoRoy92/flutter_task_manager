@@ -22,9 +22,16 @@ class _JoinWithUsState extends State<JoinWithUs> {
   //FormKey
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
+  bool _signUpProgress = false;
+
   Future<void> userSignUp() async {
+    _signUpProgress = true;
+    if (mounted) {
+      setState(() {});
+    }
+
     final NetworkResponse response = await NetworkCaller().postRequest(
-      Urls.baseUrl,
+      Urls.signUp,
       <String, dynamic>{
         "email": _emailTEController.text.trim(),
         "firstName": _firstTENameController.text.trim(),
@@ -34,18 +41,31 @@ class _JoinWithUsState extends State<JoinWithUs> {
       },
     );
 
-    if (response.isSuccess) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Successful'),
-        ),
-      );
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Sign up failed'),
-        ),
-      );
+    _signUpProgress = false;
+    if (mounted) {
+      setState(() {});
+
+      if (response.isSuccess) {
+        _emailTEController.clear();
+        _firstTENameController.clear();
+        _lastNameTEController.clear();
+        _mobileNoTEController.clear();
+        _passwordTEController.clear();
+      }
+
+      if (response.isSuccess) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Successful'),
+          ),
+        );
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Sign up failed'),
+          ),
+        );
+      }
     }
   }
 
@@ -72,7 +92,7 @@ class _JoinWithUsState extends State<JoinWithUs> {
                   TextFormField(
                     controller: _emailTEController,
                     keyboardType: TextInputType.emailAddress,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       hintText: 'Email',
                     ),
                     validator: (String? value) {
@@ -87,7 +107,7 @@ class _JoinWithUsState extends State<JoinWithUs> {
                   ),
                   TextFormField(
                     controller: _firstTENameController,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       hintText: 'First Name',
                     ),
                     validator: (String? value) {
@@ -102,7 +122,7 @@ class _JoinWithUsState extends State<JoinWithUs> {
                   ),
                   TextFormField(
                     controller: _lastNameTEController,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       hintText: 'Last Name',
                     ),
                     validator: (String? value) {
@@ -118,7 +138,7 @@ class _JoinWithUsState extends State<JoinWithUs> {
                   TextFormField(
                     controller: _mobileNoTEController,
                     keyboardType: TextInputType.phone,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       hintText: 'Mobile',
                     ),
                     validator: (String? value) {
@@ -134,7 +154,7 @@ class _JoinWithUsState extends State<JoinWithUs> {
                   TextFormField(
                     controller: _passwordTEController,
                     keyboardType: TextInputType.visiblePassword,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       hintText: 'Password',
                     ),
                     validator: (String? value) {
@@ -149,14 +169,18 @@ class _JoinWithUsState extends State<JoinWithUs> {
                   ),
                   SizedBox(
                     width: double.infinity,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        if (_formKey.currentState!.validate()) {
-                          userSignUp();
-                        }
-                      },
-                      child: const Icon(Icons.arrow_forward_ios,
-                          color: Colors.white),
+                    child: Visibility(
+                      visible: !_signUpProgress,
+                      replacement: const CircularProgressIndicator(),
+                      child: ElevatedButton(
+                        onPressed: () {
+                          if (_formKey.currentState!.validate()) {
+                            userSignUp();
+                          }
+                        },
+                        child: const Icon(Icons.arrow_forward_ios,
+                            color: Colors.white),
+                      ),
                     ),
                   ),
                   Row(
