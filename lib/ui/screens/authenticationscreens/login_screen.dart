@@ -2,24 +2,63 @@ import 'package:flutter/material.dart';
 import 'package:flutter_task_manager/data/model/network_response.dart';
 import 'package:flutter_task_manager/data/services/network_caller.dart';
 import 'package:flutter_task_manager/data/url/urls.dart';
-import 'package:flutter_task_manager/ui/screens/authenticationscreens/signup_screen.dart';
-import 'package:flutter_task_manager/ui/screens/bottomnavsacreen/bottom_nav_base_screen.dart';
-import 'package:flutter_task_manager/ui/screens/authenticationscreens/email_verifiaction_screen.dart';
 import 'package:flutter_task_manager/ui/widgets/screen_background.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+class SignInScreen extends StatefulWidget {
+  const SignInScreen({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<SignInScreen> createState() => _SignInScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _SignInScreenState extends State<SignInScreen> {
+  // TextEditingController
   final TextEditingController _emailTEController = TextEditingController();
   final TextEditingController _passwordTEController = TextEditingController();
 
+  // FormKey
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
+  bool _signInProgress = false;
+
+  Future<void> userSignIn() async {
+    _signInProgress = true;
+    if (mounted) {
+      setState(() {});
+    }
+
+    final NetworkResponse response = await NetworkCaller().postRequest(
+      Urls.signIn,
+      <String, dynamic>{
+        "email": _emailTEController.text.trim(),
+        "password": _passwordTEController.text.trim(),
+      },
+      isLogin: true,
+    );
+
+    _signInProgress = false;
+    if (mounted) {
+      setState(() {});
+
+      if (response.isSuccess) {
+        _emailTEController.clear();
+        _passwordTEController.clear();
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Successful'),
+          ),
+        );
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('SignIn Failed'),
+          ),
+        );
+      }
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: ScreenBackground(
@@ -33,7 +72,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Get Started With',
+                    'Sign In',
                     style: Theme.of(context).textTheme.titleLarge,
                   ),
                   const SizedBox(
@@ -41,7 +80,8 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   TextFormField(
                     controller: _emailTEController,
-                    decoration: InputDecoration(
+                    keyboardType: TextInputType.emailAddress,
+                    decoration: const InputDecoration(
                       hintText: 'Email',
                     ),
                     validator: (String? value) {
@@ -56,12 +96,13 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   TextFormField(
                     controller: _passwordTEController,
-                    decoration: InputDecoration(
+                    keyboardType: TextInputType.visiblePassword,
+                    decoration: const InputDecoration(
                       hintText: 'Password',
                     ),
                     validator: (String? value) {
                       if (value?.isEmpty ?? true) {
-                        return 'Enater Password';
+                        return 'Enter valid Password';
                       }
                       return null;
                     },
@@ -71,48 +112,26 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   SizedBox(
                     width: double.infinity,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    const BottomNavBaseScreen()));
-                      },
-                      child: const Icon(Icons.arrow_forward_ios,
-                          color: Colors.white),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 16,
-                  ),
-                  SizedBox(
-                      child: Center(
-                    child: TextButton(
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    const EmailVerificationScreen()));
-                      },
-                      child: const Text(
-                        'Forgot Password?',
-                        style: TextStyle(color: Colors.black),
+                    child: Visibility(
+                      visible: !_signInProgress,
+                      replacement: const CircularProgressIndicator(),
+                      child: ElevatedButton(
+                        onPressed: () {
+                          if (_formKey.currentState!.validate()) {
+                            userSignIn();
+                          }
+                        },
+                        child: const Icon(Icons.arrow_forward_ios,
+                            color: Colors.white),
                       ),
                     ),
-                  )),
+                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Text("Don't Have An Account"),
+                      const Text("Don't have an account?"),
                       TextButton(
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const JoinWithUs()));
-                        },
+                        onPressed: () {},
                         child: const Text('Sign Up',
                             style: TextStyle(color: Colors.green)),
                       ),

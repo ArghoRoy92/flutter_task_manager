@@ -20,16 +20,18 @@ class NetworkCaller {
     return NetworkResponse(false, -1, null);
   }
 
-  Future<NetworkResponse> postRequest(
-      String url, Map<String, dynamic> body) async {
+  Future<NetworkResponse> postRequest(String url, Map<String, dynamic> body,
+      {bool isLogin = false}) async {
     try {
       Response response = await post(
         Uri.parse(url),
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode(body),
       );
+
       devPrint(response.statusCode.toString());
       devPrint(response.body);
+
       if (response.statusCode == 200) {
         return NetworkResponse(
             true, response.statusCode, jsonDecode(response.body));
