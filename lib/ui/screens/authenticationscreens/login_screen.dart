@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_task_manager/data/model/network_response.dart';
 import 'package:flutter_task_manager/data/services/network_caller.dart';
 import 'package:flutter_task_manager/data/url/urls.dart';
+import 'package:flutter_task_manager/ui/screens/bottomnavsacreen/bottom_nav_base_screen.dart';
 import 'package:flutter_task_manager/ui/widgets/screen_background.dart';
 
 class SignInScreen extends StatefulWidget {
@@ -21,40 +22,34 @@ class _SignInScreenState extends State<SignInScreen> {
 
   bool _signInProgress = false;
 
-  Future<void> userSignIn() async {
+  Future<void> login() async {
     _signInProgress = true;
     if (mounted) {
       setState(() {});
     }
+    Map<String, dynamic> requestBody = {
+      "email": _emailTEController.text.trim(),
+      "password": _passwordTEController.text.trim(),
+    };
 
-    final NetworkResponse response = await NetworkCaller().postRequest(
-      Urls.signIn,
-      <String, dynamic>{
-        "email": _emailTEController.text.trim(),
-        "password": _passwordTEController.text.trim(),
-      },
-      isLogin: true,
-    );
-
+    final NetworkResponse response =
+        await NetworkCaller().postRequest(Urls.signIn, requestBody);
     _signInProgress = false;
     if (mounted) {
       setState(() {});
+    }
 
-      if (response.isSuccess) {
-        _emailTEController.clear();
-        _passwordTEController.clear();
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('Successful'),
-          ),
-        );
-      } else {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('SignIn Failed'),
-          ),
-        );
-      }
+    if (response.isSuccess) {
+      Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(builder: (context) => const BottomNavBaseScreen()),
+          (route) => false);
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Login Failed!'),
+        ),
+      );
     }
   }
 
@@ -114,11 +109,15 @@ class _SignInScreenState extends State<SignInScreen> {
                     width: double.infinity,
                     child: Visibility(
                       visible: !_signInProgress,
-                      replacement: const CircularProgressIndicator(),
+                      replacement: Center(
+                        child: const CircularProgressIndicator(
+                          color: Colors.green,
+                        ),
+                      ),
                       child: ElevatedButton(
                         onPressed: () {
                           if (_formKey.currentState!.validate()) {
-                            userSignIn();
+                            login();
                           }
                         },
                         child: const Icon(Icons.arrow_forward_ios,
