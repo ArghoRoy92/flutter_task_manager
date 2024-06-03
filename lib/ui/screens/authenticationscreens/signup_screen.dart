@@ -171,7 +171,9 @@ class _JoinWithUsState extends State<JoinWithUs> {
                     width: double.infinity,
                     child: Visibility(
                       visible: !_signUpProgress,
-                      replacement: const CircularProgressIndicator(),
+                      replacement: const Center(
+                        child: CircularProgressIndicator(),
+                      ),
                       child: ElevatedButton(
                         onPressed: () {
                           if (_formKey.currentState!.validate()) {

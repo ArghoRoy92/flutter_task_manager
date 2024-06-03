@@ -110,8 +110,8 @@ class _SignInScreenState extends State<SignInScreen> {
                     width: double.infinity,
                     child: Visibility(
                       visible: !_signInProgress,
-                      replacement: Center(
-                        child: const CircularProgressIndicator(
+                      replacement: const Center(
+                        child: CircularProgressIndicator(
                           color: Colors.green,
                         ),
                       ),
@@ -135,7 +135,7 @@ class _SignInScreenState extends State<SignInScreen> {
                           Navigator.pushAndRemoveUntil(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => JoinWithUs()),
+                                  builder: (context) => const JoinWithUs()),
                               (route) => false);
                         },
                         child: const Text('Sign Up',
