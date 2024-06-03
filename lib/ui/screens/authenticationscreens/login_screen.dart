@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_task_manager/data/model/network_response.dart';
 import 'package:flutter_task_manager/data/services/network_caller.dart';
 import 'package:flutter_task_manager/data/url/urls.dart';
+import 'package:flutter_task_manager/ui/screens/authenticationscreens/email_verifiaction_screen.dart';
 import 'package:flutter_task_manager/ui/screens/authenticationscreens/signup_screen.dart';
 import 'package:flutter_task_manager/ui/screens/bottomnavsacreen/bottom_nav_base_screen.dart';
 import 'package:flutter_task_manager/ui/widgets/screen_background.dart';
@@ -30,16 +31,16 @@ class _SignInScreenState extends State<SignInScreen> {
     }
     Map<String, dynamic> requestBody = {
       "email": _emailTEController.text.trim(),
-      "password": _passwordTEController.text.trim(),
+      "password": _passwordTEController.text,
     };
 
     final NetworkResponse response =
         await NetworkCaller().postRequest(Urls.signIn, requestBody);
+
     _signInProgress = false;
     if (mounted) {
       setState(() {});
     }
-
     if (response.isSuccess) {
       Navigator.pushAndRemoveUntil(
           context,
@@ -124,6 +125,21 @@ class _SignInScreenState extends State<SignInScreen> {
                         child: const Icon(Icons.arrow_forward_ios,
                             color: Colors.white),
                       ),
+                    ),
+                  ),
+                  Align(
+                    alignment: Alignment.center,
+                    child: TextButton(
+                      onPressed: () {
+                        Navigator.pushAndRemoveUntil(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    const EmailVerificationScreen()),
+                            (route) => false);
+                      },
+                      child: const Text('Forget Password?',
+                          style: TextStyle(color: Colors.green)),
                     ),
                   ),
                   Row(

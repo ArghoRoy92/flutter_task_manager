@@ -3,8 +3,8 @@ import 'package:flutter_task_manager/ui/screens/authenticationscreens/set_passwo
 import 'package:flutter_task_manager/ui/widgets/screen_background.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
-class PinVerification extends StatelessWidget {
-  const PinVerification({Key? key});
+class PinVerificationScreen extends StatelessWidget {
+  const PinVerificationScreen({Key? key});
 
   @override
   Widget build(BuildContext context) {
