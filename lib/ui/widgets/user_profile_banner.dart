@@ -30,7 +30,7 @@ class UserProfileBanner extends StatelessWidget {
               ),
               Text(
                 'Position',
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.white,
                 ),
               ),

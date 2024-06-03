@@ -142,7 +142,7 @@ class _JoinWithUsState extends State<JoinWithUs> {
                       hintText: 'Mobile',
                     ),
                     validator: (String? value) {
-                      if (value?.isEmpty ?? true || value!.length < 10) {
+                      if (value?.isEmpty ?? true) {
                         return 'Enter valid Mobile No';
                       }
                       return null;
@@ -158,7 +158,7 @@ class _JoinWithUsState extends State<JoinWithUs> {
                       hintText: 'Password',
                     ),
                     validator: (String? value) {
-                      if (value?.isEmpty ?? true || value!.length < 5) {
+                      if (value?.isEmpty ?? true) {
                         return 'Enter valid Password';
                       }
                       return null;

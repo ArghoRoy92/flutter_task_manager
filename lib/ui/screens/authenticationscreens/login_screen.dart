@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_task_manager/data/model/network_response.dart';
 import 'package:flutter_task_manager/data/services/network_caller.dart';
 import 'package:flutter_task_manager/data/url/urls.dart';
+import 'package:flutter_task_manager/ui/screens/authenticationscreens/signup_screen.dart';
 import 'package:flutter_task_manager/ui/screens/bottomnavsacreen/bottom_nav_base_screen.dart';
 import 'package:flutter_task_manager/ui/widgets/screen_background.dart';
 
@@ -130,7 +131,13 @@ class _SignInScreenState extends State<SignInScreen> {
                     children: [
                       const Text("Don't have an account?"),
                       TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.pushAndRemoveUntil(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => JoinWithUs()),
+                              (route) => false);
+                        },
                         child: const Text('Sign Up',
                             style: TextStyle(color: Colors.green)),
                       ),
