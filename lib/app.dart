@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'ui/screens/splashscreen/splach_screen.dart';
+import 'ui/screens/splash_screen/splash_screen.dart';
 
 class TaskManagerApp extends StatelessWidget {
   const TaskManagerApp({super.key});
@@ -25,14 +25,12 @@ class TaskManagerApp extends StatelessWidget {
             style: ElevatedButton.styleFrom(
               backgroundColor: Colors.green,
               padding: const EdgeInsets.all(8),
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(6)),
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
               elevation: 2,
             ),
           ),
           textTheme: const TextTheme(
-            titleLarge: TextStyle(
-                fontSize: 32, color: Colors.black, fontWeight: FontWeight.w500),
+            titleLarge: TextStyle(fontSize: 32, color: Colors.black, fontWeight: FontWeight.w500),
           )),
       darkTheme: ThemeData(brightness: Brightness.dark),
       themeMode: ThemeMode.light,

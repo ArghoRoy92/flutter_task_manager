@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_task_manager/ui/screens/authenticationscreens/signup_screen.dart';
+import 'package:flutter_task_manager/ui/screens/authentication_screens/signup_screen.dart';
 import 'package:flutter_task_manager/ui/widgets/screen_background.dart';
 
 class SetPassword extends StatelessWidget {
@@ -23,9 +23,7 @@ class SetPassword extends StatelessWidget {
               const SizedBox(
                 height: 12,
               ),
-              const Text(
-                  'Minimum Length Password 8 Charecter With Letter And Number Combination.',
-                  style: TextStyle(color: Colors.grey)),
+              const Text('Minimum Length Password 8 Character With Letter And Number Combination.', style: TextStyle(color: Colors.grey)),
               const SizedBox(
                 height: 12,
               ),
@@ -49,13 +47,9 @@ class SetPassword extends StatelessWidget {
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const JoinWithUs()));
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => const JoinWithUs()));
                   },
-                  child:
-                      const Icon(Icons.arrow_forward_ios, color: Colors.white),
+                  child: const Icon(Icons.arrow_forward_ios, color: Colors.white),
                 ),
               ),
               Row(
@@ -64,8 +58,7 @@ class SetPassword extends StatelessWidget {
                   const Text("Have Account?"),
                   TextButton(
                     onPressed: () {},
-                    child: const Text('Sign Up',
-                        style: TextStyle(color: Colors.green)),
+                    child: const Text('Sign Up', style: TextStyle(color: Colors.green)),
                   ),
                 ],
               )

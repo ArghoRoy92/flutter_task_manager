@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_task_manager/ui/screens/taskscreens/cancel_task_screen.dart';
-import 'package:flutter_task_manager/ui/screens/taskscreens/completed_task_screen.dart';
-import 'package:flutter_task_manager/ui/screens/taskscreens/in_progress_task_screen.dart';
-import 'package:flutter_task_manager/ui/screens/taskscreens/new_task_screen.dart';
+import 'package:flutter_task_manager/ui/screens/task_screens/cancel_task_screen.dart';
+import 'package:flutter_task_manager/ui/screens/task_screens/completed_task_screen.dart';
+import 'package:flutter_task_manager/ui/screens/task_screens/in_progress_task_screen.dart';
+import 'package:flutter_task_manager/ui/screens/task_screens/new_task_screen.dart';
 
 class BottomNavBaseScreen extends StatefulWidget {
   const BottomNavBaseScreen({super.key});
@@ -37,14 +37,10 @@ class _BottomNavBaseScreenState extends State<BottomNavBaseScreen> {
           }
         },
         items: const [
-          BottomNavigationBarItem(
-              icon: Icon(Icons.task_sharp), label: 'New Task'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.task_sharp), label: 'In Progress'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.task_sharp), label: 'Cancel'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.task_sharp), label: 'Completed'),
+          BottomNavigationBarItem(icon: Icon(Icons.task_sharp), label: 'New Task'),
+          BottomNavigationBarItem(icon: Icon(Icons.task_sharp), label: 'In Progress'),
+          BottomNavigationBarItem(icon: Icon(Icons.task_sharp), label: 'Cancel'),
+          BottomNavigationBarItem(icon: Icon(Icons.task_sharp), label: 'Completed'),
         ],
       ),
     );

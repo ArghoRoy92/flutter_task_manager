@@ -26,7 +26,7 @@ class _JoinWithUsState extends State<JoinWithUs> {
 
   Future<void> userSignUp() async {
     _signUpProgress = true;
-    if (mounted) {
+    if (context.mounted) {
       setState(() {});
     }
 
@@ -42,7 +42,7 @@ class _JoinWithUsState extends State<JoinWithUs> {
     );
 
     _signUpProgress = false;
-    if (mounted) {
+    if (context.mounted) {
       setState(() {});
 
       if (response.isSuccess) {
@@ -180,8 +180,7 @@ class _JoinWithUsState extends State<JoinWithUs> {
                             userSignUp();
                           }
                         },
-                        child: const Icon(Icons.arrow_forward_ios,
-                            color: Colors.white),
+                        child: const Icon(Icons.arrow_forward_ios, color: Colors.white),
                       ),
                     ),
                   ),
@@ -191,8 +190,7 @@ class _JoinWithUsState extends State<JoinWithUs> {
                       const Text("Have Account?"),
                       TextButton(
                         onPressed: () {},
-                        child: const Text('Sign In',
-                            style: TextStyle(color: Colors.green)),
+                        child: const Text('Sign In', style: TextStyle(color: Colors.green)),
                       ),
                     ],
                   )

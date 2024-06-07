@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:flutter_task_manager/ui/screens/authenticationscreens/login_screen.dart';
+import 'package:flutter_task_manager/ui/screens/authentication_screens/login_screen.dart';
 import 'package:flutter_task_manager/ui/widgets/screen_background.dart';
 import 'package:flutter_task_manager/ui/utils/assets_utils.dart';
 
@@ -20,10 +20,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   void navigateToLogin() {
     Future.delayed(const Duration(seconds: 3)).then((_) {
-      Navigator.pushAndRemoveUntil(
-          context,
-          MaterialPageRoute(builder: (context) => const SignInScreen()),
-          (route) => false);
+      Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => const SignInScreen()), (route) => false);
     });
   }
 

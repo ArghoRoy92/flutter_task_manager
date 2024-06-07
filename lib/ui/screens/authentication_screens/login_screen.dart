@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_task_manager/data/model/network_response.dart';
 import 'package:flutter_task_manager/data/services/network_caller.dart';
 import 'package:flutter_task_manager/data/url/urls.dart';
-import 'package:flutter_task_manager/ui/screens/authenticationscreens/email_verifiaction_screen.dart';
-import 'package:flutter_task_manager/ui/screens/authenticationscreens/signup_screen.dart';
-import 'package:flutter_task_manager/ui/screens/bottomnavsacreen/bottom_nav_base_screen.dart';
+import 'package:flutter_task_manager/ui/screens/authentication_screens/email_verification_screen.dart';
+import 'package:flutter_task_manager/ui/screens/authentication_screens/signup_screen.dart';
+import 'package:flutter_task_manager/ui/screens/bottom_nav_screen/bottom_nav_base_screen.dart';
 import 'package:flutter_task_manager/ui/widgets/screen_background.dart';
 
 class SignInScreen extends StatefulWidget {
@@ -34,18 +34,17 @@ class _SignInScreenState extends State<SignInScreen> {
       "password": _passwordTEController.text,
     };
 
-    final NetworkResponse response =
-        await NetworkCaller().postRequest(Urls.signIn, requestBody);
+    final NetworkResponse response = await NetworkCaller().postRequest(Urls.signIn, requestBody);
 
     _signInProgress = false;
     if (mounted) {
       setState(() {});
     }
+
+    if (!context.mounted) return;
+
     if (response.isSuccess) {
-      Navigator.pushAndRemoveUntil(
-          context,
-          MaterialPageRoute(builder: (context) => const BottomNavBaseScreen()),
-          (route) => false);
+      Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => const BottomNavBaseScreen()), (route) => false);
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
@@ -122,8 +121,7 @@ class _SignInScreenState extends State<SignInScreen> {
                             login();
                           }
                         },
-                        child: const Icon(Icons.arrow_forward_ios,
-                            color: Colors.white),
+                        child: const Icon(Icons.arrow_forward_ios, color: Colors.white),
                       ),
                     ),
                   ),
@@ -131,15 +129,9 @@ class _SignInScreenState extends State<SignInScreen> {
                     alignment: Alignment.center,
                     child: TextButton(
                       onPressed: () {
-                        Navigator.pushAndRemoveUntil(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    const EmailVerificationScreen()),
-                            (route) => false);
+                        Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => const EmailVerificationScreen()), (route) => false);
                       },
-                      child: const Text('Forget Password?',
-                          style: TextStyle(color: Colors.green)),
+                      child: const Text('Forget Password?', style: TextStyle(color: Colors.green)),
                     ),
                   ),
                   Row(
@@ -148,14 +140,9 @@ class _SignInScreenState extends State<SignInScreen> {
                       const Text("Don't have an account?"),
                       TextButton(
                         onPressed: () {
-                          Navigator.pushAndRemoveUntil(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const JoinWithUs()),
-                              (route) => false);
+                          Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => const JoinWithUs()), (route) => false);
                         },
-                        child: const Text('Sign Up',
-                            style: TextStyle(color: Colors.green)),
+                        child: const Text('Sign Up', style: TextStyle(color: Colors.green)),
                       ),
                     ],
                   )

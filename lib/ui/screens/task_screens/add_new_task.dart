@@ -3,7 +3,7 @@ import 'package:flutter_task_manager/ui/widgets/screen_background.dart';
 import 'package:flutter_task_manager/ui/widgets/user_profile_banner.dart';
 
 class AddNewTask extends StatelessWidget {
-  const AddNewTask({Key? key}) : super(key: key);
+  const AddNewTask({super.key});
 
   @override
   Widget build(BuildContext context) {

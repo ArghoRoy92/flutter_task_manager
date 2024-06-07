@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_task_manager/ui/screens/taskscreens/add_new_task.dart';
+import 'package:flutter_task_manager/ui/screens/task_screens/add_new_task.dart';
 import 'package:flutter_task_manager/ui/widgets/screen_background.dart';
 import 'package:flutter_task_manager/ui/widgets/summary_card.dart';
 import 'package:flutter_task_manager/ui/widgets/user_profile_banner.dart';
@@ -14,8 +14,8 @@ class NewTask extends StatelessWidget {
         child: SafeArea(
           child: Column(
             children: [
-              UserProfileBanner(),
-              Padding(
+              const UserProfileBanner(),
+              const Padding(
                 padding: EdgeInsets.all(8.0),
                 child: Row(
                   children: [
@@ -29,7 +29,7 @@ class NewTask extends StatelessWidget {
                     Expanded(
                       child: SummaryCard(
                         number: 123,
-                        title: 'Inprogress',
+                        title: 'In-progress',
                       ),
                     ),
                     SizedBox(width: 8),
@@ -59,26 +59,26 @@ class NewTask extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text('Task description for task ${index + 1}'),
-                          Text('Date: 1/1/24'),
+                          const Text('Date: 1/1/24'),
                           Row(
                             children: [
-                              Chip(
+                              const Chip(
                                 label: Text(
                                   'New',
                                   style: TextStyle(color: Colors.white),
                                 ),
                                 backgroundColor: Colors.blue,
                               ),
-                              Spacer(),
+                              const Spacer(),
                               IconButton(
                                   onPressed: () {},
-                                  icon: Icon(
+                                  icon: const Icon(
                                     Icons.delete,
                                     color: Colors.red,
                                   )),
                               IconButton(
                                   onPressed: () {},
-                                  icon: Icon(
+                                  icon: const Icon(
                                     Icons.edit,
                                     color: Colors.green,
                                   )),
@@ -89,7 +89,7 @@ class NewTask extends StatelessWidget {
                     );
                   },
                   separatorBuilder: (BuildContext context, int index) {
-                    return Divider(
+                    return const Divider(
                       height: 0,
                     );
                   },
@@ -102,14 +102,13 @@ class NewTask extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.green,
         onPressed: () {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => AddNewTask()));
+          Navigator.push(context, MaterialPageRoute(builder: (context) => const AddNewTask()));
         },
-        child: Icon(
+        tooltip: 'Add',
+        child: const Icon(
           Icons.add,
           color: Colors.white,
         ),
-        tooltip: 'Add',
       ),
     );
   }

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_task_manager/ui/widgets/screen_background.dart';
 import 'package:flutter_task_manager/ui/widgets/user_profile_banner.dart';
 
-class ProgressTask extends StatelessWidget {
-  const ProgressTask({super.key});
+class CompletedTask extends StatelessWidget {
+  const CompletedTask({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +12,7 @@ class ProgressTask extends StatelessWidget {
         child: SafeArea(
           child: Column(
             children: [
-              UserProfileBanner(),
+              const UserProfileBanner(),
               Expanded(
                 child: ListView.separated(
                   itemCount: 20,
@@ -23,26 +23,26 @@ class ProgressTask extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text('Task description for task ${index + 1}'),
-                          Text('Date: 1/1/24'),
+                          const Text('Date: 1/1/24'),
                           Row(
                             children: [
-                              Chip(
+                              const Chip(
                                 label: Text(
-                                  'New',
+                                  'Completed',
                                   style: TextStyle(color: Colors.white),
                                 ),
-                                backgroundColor: Colors.purple,
+                                backgroundColor: Colors.green,
                               ),
-                              Spacer(),
+                              const Spacer(),
                               IconButton(
                                   onPressed: () {},
-                                  icon: Icon(
+                                  icon: const Icon(
                                     Icons.delete,
                                     color: Colors.red,
                                   )),
                               IconButton(
                                   onPressed: () {},
-                                  icon: Icon(
+                                  icon: const Icon(
                                     Icons.edit,
                                     color: Colors.green,
                                   )),
@@ -53,7 +53,7 @@ class ProgressTask extends StatelessWidget {
                     );
                   },
                   separatorBuilder: (BuildContext context, int index) {
-                    return Divider(
+                    return const Divider(
                       height: 0,
                     );
                   },

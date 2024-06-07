@@ -8,9 +8,9 @@ class UserProfileBanner extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(10),
+      padding: const EdgeInsets.all(10),
       color: Colors.green,
-      child: Row(
+      child: const Row(
         children: [
           CircleAvatar(
             backgroundColor: Colors.grey,
@@ -30,7 +30,7 @@ class UserProfileBanner extends StatelessWidget {
               ),
               Text(
                 'Position',
-                style: const TextStyle(
+                style: TextStyle(
                   color: Colors.white,
                 ),
               ),

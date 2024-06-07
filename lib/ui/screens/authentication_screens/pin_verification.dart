@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_task_manager/ui/screens/authenticationscreens/set_password_screen.dart';
+import 'package:flutter_task_manager/ui/screens/authentication_screens/set_password_screen.dart';
 import 'package:flutter_task_manager/ui/widgets/screen_background.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 class PinVerificationScreen extends StatelessWidget {
-  const PinVerificationScreen({Key? key});
+  const PinVerificationScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -32,17 +32,7 @@ class PinVerificationScreen extends StatelessWidget {
                     length: 6,
                     obscureText: false,
                     animationType: AnimationType.fade,
-                    pinTheme: PinTheme(
-                        shape: PinCodeFieldShape.box,
-                        borderRadius: BorderRadius.circular(5),
-                        fieldHeight: 50,
-                        fieldWidth: 40,
-                        activeFillColor: Colors.white,
-                        inactiveColor: Colors.white,
-                        activeColor: Colors.white,
-                        selectedColor: Colors.white,
-                        selectedFillColor: Colors.white,
-                        inactiveFillColor: Colors.white),
+                    pinTheme: PinTheme(shape: PinCodeFieldShape.box, borderRadius: BorderRadius.circular(5), fieldHeight: 50, fieldWidth: 40, activeFillColor: Colors.white, inactiveColor: Colors.white, activeColor: Colors.white, selectedColor: Colors.white, selectedFillColor: Colors.white, inactiveFillColor: Colors.white),
                     animationDuration: const Duration(milliseconds: 300),
                     enableActiveFill: true,
                     cursorColor: Colors.green,
@@ -52,13 +42,9 @@ class PinVerificationScreen extends StatelessWidget {
                     width: double.infinity,
                     child: ElevatedButton(
                       onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const SetPassword()));
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => const SetPassword()));
                       },
-                      child: const Icon(Icons.arrow_forward_ios,
-                          color: Colors.white),
+                      child: const Icon(Icons.arrow_forward_ios, color: Colors.white),
                     ),
                   ),
                   Row(
@@ -67,8 +53,7 @@ class PinVerificationScreen extends StatelessWidget {
                       const Text("Have Account?"),
                       TextButton(
                         onPressed: () {},
-                        child: const Text('Sign Up',
-                            style: TextStyle(color: Colors.green)),
+                        child: const Text('Sign Up', style: TextStyle(color: Colors.green)),
                       ),
                     ],
                   )
