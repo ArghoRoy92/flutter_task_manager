@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_task_manager/data/model/network_response.dart';
+import 'package:flutter_task_manager/data/services/network_response.dart';
 import 'package:flutter_task_manager/data/services/network_caller.dart';
 import 'package:flutter_task_manager/data/url/urls.dart';
 import 'package:flutter_task_manager/ui/widgets/screen_background.dart';
@@ -180,7 +180,8 @@ class _JoinWithUsState extends State<JoinWithUs> {
                             userSignUp();
                           }
                         },
-                        child: const Icon(Icons.arrow_forward_ios, color: Colors.white),
+                        child: const Icon(Icons.arrow_forward_ios,
+                            color: Colors.white),
                       ),
                     ),
                   ),
@@ -190,7 +191,8 @@ class _JoinWithUsState extends State<JoinWithUs> {
                       const Text("Have Account?"),
                       TextButton(
                         onPressed: () {},
-                        child: const Text('Sign In', style: TextStyle(color: Colors.green)),
+                        child: const Text('Sign In',
+                            style: TextStyle(color: Colors.green)),
                       ),
                     ],
                   )
