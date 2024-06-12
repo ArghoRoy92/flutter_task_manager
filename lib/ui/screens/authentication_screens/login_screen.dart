@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_task_manager/data/model/auth_utility.dart';
 import 'package:flutter_task_manager/data/model/login_model.dart';
 import 'package:flutter_task_manager/data/services/network_response.dart';
 import 'package:flutter_task_manager/data/services/network_caller.dart';
@@ -48,6 +49,7 @@ class _SignInScreenState extends State<SignInScreen> {
     if (response.isSuccess) {
       LoginModel model =
           LoginModel.fromJson(response.body!); // Must Have a body
+      await AuthUtility.saveUserInfo(model);
 
       Navigator.pushAndRemoveUntil(
           context,
