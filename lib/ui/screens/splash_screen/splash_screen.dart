@@ -22,16 +22,12 @@ class _SplashScreenState extends State<SplashScreen> {
 
   void navigateToLogin() {
     Future.delayed(const Duration(seconds: 3)).then((_) async {
-      final bool isLoggedIn = await AuthUtility.ifUserInfoLoggedIn();
-      if (mounted) {
-        Navigator.pushAndRemoveUntil(
-            context,
-            MaterialPageRoute(
-                builder: (context) => isLoggedIn
-                    ? const BottomNavBaseScreen()
-                    : const SignInScreen()),
-            (route) => false);
-      }
+      // final bool isLoggedIn = await AuthUtility.ifUserInfoLoggedIn();
+      // if (mounted) {
+      Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(builder: (context) => const BottomNavBaseScreen()),
+          (route) => false);
     });
   }
 
