@@ -11,7 +11,7 @@ class AuthUtility {
     await prefs.setString('user-data', model.toJson().toString());
   }
 
-  static Future<LoginModel> getUserInfo(LoginModel model) async {
+  static Future<LoginModel> getUserInfo() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     String value = prefs.getString('user-data')!;
     return LoginModel.fromJson(jsonDecode(value));
@@ -24,6 +24,10 @@ class AuthUtility {
 
   static Future<bool> ifUserInfoLoggedIn() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
-    return prefs.containsKey('user-data');
+    bool islogin = prefs.containsKey('user-data');
+    if (islogin) {
+      await getUserInfo();
+    }
+    return islogin;
   }
 }
