@@ -22,12 +22,17 @@ class _SplashScreenState extends State<SplashScreen> {
 
   void navigateToLogin() {
     Future.delayed(const Duration(seconds: 3)).then((_) async {
-      // final bool isLoggedIn = await AuthUtility.ifUserInfoLoggedIn();
-      // if (mounted) {
-      Navigator.pushAndRemoveUntil(
+      final bool isLoggedIn = await AuthUtility.ifUserInfoLoggedIn();
+      if (mounted) {
+        Navigator.pushAndRemoveUntil(
           context,
-          MaterialPageRoute(builder: (context) => const BottomNavBaseScreen()),
-          (route) => false);
+          MaterialPageRoute(
+            builder: (context) =>
+                isLoggedIn ? const BottomNavBaseScreen() : const SignInScreen(),
+          ),
+          (route) => false,
+        );
+      }
     });
   }
 
@@ -35,12 +40,13 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: ScreenBackground(
-          child: Center(
-        child: SvgPicture.asset(
-          assetsUtils.logoSVG,
-          width: 90,
+        child: Center(
+          child: SvgPicture.asset(
+            assetsUtils.logoSVG,
+            width: 90,
+          ),
         ),
-      )),
+      ),
     );
   }
 }
