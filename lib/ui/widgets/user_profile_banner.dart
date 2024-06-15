@@ -2,11 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_task_manager/data/model/auth_utility.dart';
 import 'package:flutter_task_manager/ui/screens/authentication_screens/login_screen.dart';
 
-class UserProfileBanner extends StatelessWidget {
+class UserProfileBanner extends StatefulWidget {
   const UserProfileBanner({
     super.key,
   });
 
+  @override
+  State<UserProfileBanner> createState() => _UserProfileBannerState();
+}
+
+class _UserProfileBannerState extends State<UserProfileBanner> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -18,8 +23,7 @@ class UserProfileBanner extends StatelessWidget {
             backgroundColor: Colors.grey,
             radius: 25,
           ),
-          const SizedBox(
-              width: 10), // Adds space between the CircleAvatar and the text
+          const SizedBox(width: 10),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -43,11 +47,14 @@ class UserProfileBanner extends StatelessWidget {
           IconButton(
             onPressed: () async {
               await AuthUtility.clearUserInfo();
-              Navigator.pushAndRemoveUntil(context,
-                  MaterialPageRoute(builder: (context) => const SignInScreen()),
-                  (route) {
-                return false;
-              });
+              if (mounted) {
+                Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const SignInScreen()), (route) {
+                  return false;
+                });
+              }
             },
             icon: const Icon(
               Icons.logout_outlined,
