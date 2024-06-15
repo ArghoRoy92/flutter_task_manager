@@ -37,10 +37,14 @@ class _BottomNavBaseScreenState extends State<BottomNavBaseScreen> {
           }
         },
         items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.task_sharp), label: 'New Task'),
-          BottomNavigationBarItem(icon: Icon(Icons.task_sharp), label: 'In Progress'),
-          BottomNavigationBarItem(icon: Icon(Icons.task_sharp), label: 'Cancel'),
-          BottomNavigationBarItem(icon: Icon(Icons.task_sharp), label: 'Completed'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.task_sharp), label: 'New Task'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.task_sharp), label: 'Progress'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.task_sharp), label: 'Cancel'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.task_sharp), label: 'Completed'),
         ],
       ),
     );
