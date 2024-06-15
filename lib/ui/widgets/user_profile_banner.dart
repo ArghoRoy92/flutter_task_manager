@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_task_manager/data/model/auth_utility.dart';
 
 class UserProfileBanner extends StatelessWidget {
   const UserProfileBanner({
@@ -10,7 +11,7 @@ class UserProfileBanner extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(10),
       color: Colors.green,
-      child: const Row(
+      child: Row(
         children: [
           CircleAvatar(
             backgroundColor: Colors.grey,
@@ -22,14 +23,16 @@ class UserProfileBanner extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'User Name',
+                (AuthUtility.userInfo.data?.firstName ?? ' ') +
+                    ' ' +
+                    (AuthUtility.userInfo.data?.lastName ?? ' '),
                 style: TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.w500,
                 ),
               ),
               Text(
-                'Position',
+                AuthUtility.userInfo.data?.email ?? ' ',
                 style: TextStyle(
                   color: Colors.white,
                 ),
